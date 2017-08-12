@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/css/index.css')
+    title domgoodw.in
+  body
+    .header
+      h1.page-title domgoodw.in
+
+    ul.nav
+      li: a(href='/') Home
+      li: a(href='/functions') Functions
+      li: a(href='/database') Database
+      li: a(href='/sites') Sites
+      li: a(href='/api') API
+    
+    .main-content
+      block content
+
+    .footer
+      p domGoodwin 2017

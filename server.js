@@ -58,6 +58,16 @@ app.get('/api', function (req, res, next) {
     }
 })
 
+app.get('/dashboard', function (req, res, next) {
+    var pageName = "dashboard.jade";
+    try {
+        var html = template.compileFile(__dirname + fil + pageName)({ title: 'Dashboard' })
+        res.send(html)
+    } catch (e) {
+        next(e)
+    }
+})
+
 
 
 app.listen(process.env.PORT || 3000, function () {

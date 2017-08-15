@@ -61,10 +61,10 @@ app.get('/api', function (req, res, next) {
 
 app.get('/dashboard', function (req, res, next) {
     var pageName = "dashboard.jade";
-    var memUsageNum = (os.freemem()/os.totalmem()) * 100;
-    var memUse = os.freemem() + ' / ' +  os.totalmem() + ' : ' + memUsageNum.toFixed(2) + '%';
+    var memUsageNum = formatUsageString((os.freemem()/os.totalmem()));
+    var memUse = os.freemem() + ' / ' +  os.totalmem() + ' : ' + memUsageNum + '%';
     var cpuUsageArr = os.loadavg();
-    var cUse = '1:' + cpuUsageArr[0] + ' / 5:' + cpuUsageArr[1] + ' / 15:' + cpuUsageArr[2];
+    var cUse = '1:' + formatUsageString(cpuUsageArr[0]) + ' / 5:' + formatUsageString(cpuUsageArr[1]) + ' / 15:' + formatUsageString(cpuUsageArr[2]);
     console.log(cUse);
     //console.log( 'CPU Usage (%): ' + v );
     try {
@@ -75,6 +75,9 @@ app.get('/dashboard', function (req, res, next) {
     }
 })
 
+function formatUsageString(numberToProcess){
+  return (numberToProcess * 100).toFixed(2);
+}
 
 
 app.listen(process.env.PORT || 3000, function () {

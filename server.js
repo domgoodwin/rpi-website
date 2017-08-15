@@ -4,7 +4,7 @@ var express = require('express')
   , template = require('jade')
 
 app.use(logger('dev'))
-app.use(express.static(__dirname + '/static'))
+app.use("/static", express.static(__dirname + '/static'))
 
 var fil = '/source/templates/';
 

@@ -1,3 +1,4 @@
+var os = require('os-utils');
 var express = require('express')
   , logger = require('morgan')
   , app = express()
@@ -60,12 +61,15 @@ app.get('/api', function (req, res, next) {
 
 app.get('/dashboard', function (req, res, next) {
     var pageName = "dashboard.jade";
-    try {
-        var html = template.compileFile(__dirname + fil + pageName)({ title: 'Dashboard' })
-        res.send(html)
-    } catch (e) {
-        next(e)
-    }
+    os.cpuUsage(function(cUse){
+      //console.log( 'CPU Usage (%): ' + v );
+      try {
+          var html = template.compileFile(__dirname + fil + pageName)({ title: 'Dashboard', cpuUsage: cUse})
+          res.send(html)
+      } catch (e) {
+          next(e)
+      }
+    });
 })
 
 

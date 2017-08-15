@@ -3,5 +3,11 @@ extend default
 block content
   h1.
     Dashboard
+  h2.
+    CPU
   p.
-    CPU, RAM, stats
+    #{cpuUsage}
+  h2.
+    RAM
+  p.
+    #{memoryUsage}

@@ -1,4 +1,4 @@
-var os = require('os-utils');
+var os = require('os');
 var express = require('express')
   , logger = require('morgan')
   , app = express()
@@ -61,15 +61,18 @@ app.get('/api', function (req, res, next) {
 
 app.get('/dashboard', function (req, res, next) {
     var pageName = "dashboard.jade";
-    os.cpuUsage(function(cUse){
-      //console.log( 'CPU Usage (%): ' + v );
-      try {
-          var html = template.compileFile(__dirname + fil + pageName)({ title: 'Dashboard', cpuUsage: cUse})
-          res.send(html)
-      } catch (e) {
-          next(e)
-      }
-    });
+    var memUsageNum = (os.freemem()/os.totalmem()) * 100;
+    var memUse = os.freemem() + ' / ' +  os.totalmem() + ' : ' + memUsageNum.toFixed(2) + '%';
+    var cpuUsageArr = os.loadavg();
+    var cUse = '1:' + cpuUsageArr[0] + ' / 5:' + cpuUsageArr[1] + ' / 15:' + cpuUsageArr[2];
+    console.log(cUse);
+    //console.log( 'CPU Usage (%): ' + v );
+    try {
+        var html = template.compileFile(__dirname + fil + pageName)({ title: 'Dashboard', cpuUsage: cUse, memoryUsage: memUse})
+        res.send(html)
+    } catch (e) {
+        next(e)
+    }
 })
 
 

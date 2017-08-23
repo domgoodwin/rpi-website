@@ -64,7 +64,7 @@ app.get('/dashboard', function (req, res, next) {
     var memUsageNum = formatUsageString((os.freemem()/os.totalmem()));
     var memUse = os.freemem() + ' / ' +  os.totalmem() + ' : ' + memUsageNum + '%';
     var cpuUsageArr = os.loadavg();
-    var cUse = '1:' + formatUsageString(cpuUsageArr[0]) + ' / 5:' + formatUsageString(cpuUsageArr[1]) + ' / 15:' + formatUsageString(cpuUsageArr[2]);
+    var cUse = '1:' + formatUsageString(cpuUsageArr[0]) + '% / 5:' + formatUsageString(cpuUsageArr[1]) + '% / 15:' + formatUsageString(cpuUsageArr[2]) + '%';
     console.log(cUse);
     //console.log( 'CPU Usage (%): ' + v );
     try {

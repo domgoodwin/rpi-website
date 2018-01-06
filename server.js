@@ -129,7 +129,6 @@ var pingDevices = function(callback){
   });
 }
 
-
-http.listen(process.env.PORT || 3001, function () {
-  console.log('Listening on http://localhost:' + (process.env.PORT || 3001))
+http.listen(process.env.PORT || 3000, function () {
+  console.log('Listening on http://localhost:' + (process.env.PORT || 3000))
 })

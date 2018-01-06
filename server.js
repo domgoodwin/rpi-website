@@ -4,7 +4,6 @@ var express = require('express')
   , logger = require('morgan')
   , app = express()
   , template = require('jade')
-  , sse = require('./sse')
 
 var http = require('http').Server(app)
 var io = require('socket.io')(http);

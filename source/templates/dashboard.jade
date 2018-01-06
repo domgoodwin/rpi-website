@@ -1,6 +1,7 @@
 extend default
 
 block content
+
   h1.
     Dashboard
   h2.
@@ -11,3 +12,28 @@ block content
     RAM
   p.
     #{memoryUsage}
+  p.
+    #{pings}
+  form
+    button(id='btn') Refresh
+  ul(id="ping")
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js").
+  script(src="https://code.jquery.com/jquery-1.11.1.js").
+  script.
+    var socket = io();
+  script.
+    $(function () {
+      var socket = io();
+      $('form').submit(function(){
+        $('#ping').empty();
+        socket.emit('ping-get', '');
+        return false;
+      });
+      socket.on('ping', function(msg){
+        if(msg){
+          $('#ping').append($('<li>').text(msg));
+        }
+
+      });
+    });
+    document.onload = $('#ping').empty();  socket.emit('ping-get', '');
